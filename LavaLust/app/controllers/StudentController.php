@@ -12,12 +12,12 @@ class StudentController extends Controller
     public function profile()
     {
         $student = [
-            'student_id' => '2026-0001',
-            'name'       => 'Juan Dela Cruz',
+            'student_id' => 'MCC2024-00149',
+            'name'       => 'Blessie C Mendoza',
             'course'     => 'BS Information Technology',
-            'year_level' => '2nd Year',
-            'section'    => 'A',
-            'email'      => 'juan@example.com'
+            'year_level' => '3rd Year',
+            'section'    => 'F3',
+            'email'      => 'blessiemendoza853gmail.com'
         ];
 
         $this->call->view('errors/student_profile', $student);
