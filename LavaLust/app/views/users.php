@@ -3,24 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
+    <title>Registered Users</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f9; }
-        .container { max-width: 900px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h2 { margin-top: 0; color: #333; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #007bff; color: white; }
-        tr:hover { background-color: #f1f1f1; }
-        .empty { text-align: center; color: #777; padding: 20px; }
+        :root {
+            --pink: #e85d91;
+            --pink-dark: #a93668;
+            --pink-soft: #fff1f6;
+            --pink-line: #f5c4d7;
+            --ink: #482638;
+            --muted: #8c6677;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 48px 18px;
+            color: var(--ink);
+            font-family: Georgia, 'Times New Roman', serif;
+            background-color: #ffe5ef;
+            background-image: radial-gradient(#f2a8c3 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .container {
+            width: min(100%, 980px);
+            margin: auto;
+            overflow: hidden;
+            border: 2px solid var(--pink-line);
+            border-radius: 24px;
+            background: var(--white);
+            box-shadow: 0 20px 50px rgba(132, 42, 79, 0.16);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 28px 30px;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--pink), #f28bb1);
+        }
+
+        .header-icon {
+            display: grid;
+            width: 52px;
+            height: 52px;
+            flex: 0 0 52px;
+            place-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            font-size: 24px;
+        }
+
+        h2 { margin: 0; font-size: clamp(24px, 4vw, 34px); }
+        .subtitle { margin: 5px 0 0; color: #fff5f9; font: 14px Arial, sans-serif; }
+
+        .table-wrap { padding: 18px 24px 24px; overflow-x: auto; }
+        table { width: 100%; min-width: 700px; border-collapse: collapse; font: 14px Arial, sans-serif; }
+        th, td { padding: 15px 14px; text-align: left; border-bottom: 1px solid var(--pink-line); }
+        th { color: var(--pink-dark); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--pink-soft); }
+        tbody tr { transition: background-color 0.2s ease; }
+        tbody tr:hover { background-color: #fff7fa; }
+        tbody tr:last-child td { border-bottom: 0; }
+        td:first-child { color: var(--pink-dark); font-weight: 700; }
+        .empty { padding: 30px; color: var(--muted); text-align: center; }
+
+        @media (max-width: 600px) {
+            body { padding: 24px 12px; }
+            .header { padding: 22px 20px; }
+            .table-wrap { padding: 12px 14px 16px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Registered Users</h2>
+    <header class="header">
+        <div class="header-icon" aria-hidden="true">&#9829;</div>
+        <div>
+            <h2>Registered Users</h2>
+            <p class="subtitle">A lovely little directory of account records</p>
+        </div>
+    </header>
 
-    <table>
+    <div class="table-wrap">
+      <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -47,8 +117,10 @@
                 </tr>
             <?php endif; ?>
         </tbody>
-    </table>
+            </table>
+        </div>
 </div>
 
 </body>
 </html>
+
