@@ -48,3 +48,4 @@ $router->get('/', 'Welcome::index');
 $router->get('/student', 'StudentController::index');
 $router->get('/profile', 'StudentController::profile');
 $router->get('/student/profile', 'StudentController::profile');
+$router->get('/users', 'UserController::showUsers');
