@@ -14,9 +14,20 @@ class UserController extends Controller {
 
     public function showUsers()
     {
-      $this->call->database();
-      $this->call->model('UserModel');
-      $data['users'] = $this->UserModel->all();
+      $data['users'] = [];
+
+      $hasDatabaseConfig = !empty(getenv('DB_HOST')) && !empty(getenv('DB_NAME'));
+
+      if ($hasDatabaseConfig) {
+          try {
+              $this->call->database();
+              $this->call->model('UserModel');
+              $data['users'] = $this->UserModel->all();
+          } catch (Exception $e) {
+              $data['users'] = [];
+          }
+      }
+
       $this->call->view('users', $data);
     }
 }
