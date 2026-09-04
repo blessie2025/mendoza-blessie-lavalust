@@ -186,10 +186,10 @@
 
 <div class="container">
 
-    <!-- NAVIGATION -->
+        <!-- NAVIGATION -->
     <nav class="navbar">
         <a href="index.php">Home</a>
-        <a href="show-users" class="active">Registered Users</a>
+        <a href="show-users.php" class="active">Registered Users</a>
         <a href="profile.php">Profile</a>
     </nav>
 
