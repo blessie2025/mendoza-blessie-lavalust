@@ -1,4 +1,3 @@
-```php
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,7 +187,9 @@
 
         <!-- NAVIGATION -->
     <nav class="navbar">
+            <a href="<?= site_url('') ?>">Home</a>
             <a href="<?= site_url('users') ?>" class="active">Registered Users</a>
+            <a href="<?= site_url('profile') ?>">Profile</a>
     </nav>
 
     <!-- HEADER -->
@@ -268,4 +269,3 @@
 
 </body>
 </html>
-```
