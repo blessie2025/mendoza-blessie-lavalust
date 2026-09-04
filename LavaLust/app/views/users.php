@@ -188,9 +188,7 @@
 
         <!-- NAVIGATION -->
     <nav class="navbar">
-        <a href="index.php">Home</a>
-        <a href="show-users.php" class="active">Registered Users</a>
-        <a href="profile.php">Profile</a>
+            <a href="<?= site_url('users') ?>" class="active">Registered Users</a>
     </nav>
 
     <!-- HEADER -->
