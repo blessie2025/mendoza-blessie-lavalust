@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
+const APP_HOME = import.meta.env.VITE_APP_HOME || '/inventory';
 const emptyProduct = { product_name: '', description: '', price: '', quantity: '' };
 
 async function request(path, options = {}) {
-  const response = await fetch(path, {
-    credentials: 'same-origin',
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    credentials: 'include',
     ...options,
     headers: {
       ...(options.body ? { 'Content-Type': 'application/json' } : {}),
@@ -138,9 +140,9 @@ function App() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <a className="brand" href="/inventory"><span className="brand-mark">S</span> STOCKROOM</a>
+        <a className="brand" href={APP_HOME}><span className="brand-mark">S</span> STOCKROOM</a>
         <div className="side-section-label">WORKSPACE</div>
-        <a className="side-link active" href="/inventory"><span className="side-dot" />Products</a>
+        <a className="side-link active" href={APP_HOME}><span className="side-dot" />Products</a>
         <div className="sidebar-bottom">
           <div className="account-mark">{(user.email || 'U').slice(0, 1).toUpperCase()}</div>
           <div className="account-copy"><strong>{user.email}</strong><span>{user.role || 'Member'}</span></div>

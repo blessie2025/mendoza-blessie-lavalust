@@ -41,6 +41,10 @@ class ApiController extends Controller
         $this->api->respond(['data' => $this->public_user($user)]);
     }
 
+    public function options()
+    {
+    }
+
     public function me()
     {
         $this->api->respond(['data' => [

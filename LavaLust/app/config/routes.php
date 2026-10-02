@@ -58,6 +58,11 @@ $router->get('/logout', 'AuthController::logout');
 $router->get('/inventory', 'ProductController::app');
 
 $router->post('/api/auth/login', 'ApiController::login');
+$router->options('/api/auth/login', 'ApiController::options');
+$router->options('/api/auth/me', 'ApiController::options');
+$router->options('/api/auth/logout', 'ApiController::options');
+$router->options('/api/products', 'ApiController::options');
+$router->options('/api/products/{id}', 'ApiController::options');
 
 $router->group(['middleware' => 'ApiAuthMiddleware'], function ($router) {
     $router->get('/api/auth/me', 'ApiController::me');

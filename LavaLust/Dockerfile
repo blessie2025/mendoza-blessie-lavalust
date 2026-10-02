@@ -20,7 +20,7 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/Allo
  
 # Copy app files
 COPY . /var/www/html/
-COPY --from=frontend-build /workspace/public/build /var/www/html/public/build
+COPY --from=frontend-build /workspace/frontend/dist /var/www/html/public/build
 COPY docker-entrypoint.sh /usr/local/bin/render-entrypoint
  
 # Fix permissions

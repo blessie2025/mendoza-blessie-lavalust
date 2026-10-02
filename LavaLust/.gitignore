@@ -11,6 +11,7 @@ app/vendor/
 composer.lock
 **/node_modules/
 **/public/build/
+**/dist/
 
 # Cache & Logs
 runtime/*
