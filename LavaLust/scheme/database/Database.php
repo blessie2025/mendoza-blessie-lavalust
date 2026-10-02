@@ -276,6 +276,8 @@ class Database {
             $this->db = new PDO($dsn, $username, $password, $options);
             $this->driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         } catch (Exception $e) {
+            $error_message = $e->getMessage();
+
             if ($driver === 'mysql') {
                 $ssl_ca = $database_config['ssl_ca'] ?? '';
                 $ssl_ca_status = 'not configured';
@@ -294,11 +296,12 @@ class Database {
                 }
 
                 error_log('MySQL SSL CA diagnostic: ' . $ssl_ca_status);
+                $error_message .= ' (MySQL SSL CA: ' . $ssl_ca_status . ')';
             }
 
             $error = load_class('Errors', 'kernel');
             $error->show_database_error(
-                $e->getMessage(),
+                $error_message,
                 $this->get_sql ?? '',
                 $this->bind_values ?? [],
                 $e
