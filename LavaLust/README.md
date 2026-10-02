@@ -248,6 +248,33 @@ Topics covered include:
 
 ---
 
+## Laboratory Exercise 6: Product Inventory
+
+Configure the project `.env` with the Aiven MySQL host, port, database, username, password, and the path to Aiven's downloaded CA certificate (`DB_SSL_CA`). The matching variable names are listed in `.env.example`.
+
+Run the product migration from PowerShell:
+
+```powershell
+$env:MIGRATIONS_ENABLED = 'true'
+php lava migration status
+php lava migration run
+Remove-Item Env:MIGRATIONS_ENABLED
+```
+
+Migrations are disabled unless `MIGRATIONS_ENABLED` is set to `true`. Keep them disabled outside migration runs. The migration creates `products` with the fields required by the exercise. Avoid `rollback-all` and `refresh` on databases containing data.
+
+Build and run the React interface:
+
+```powershell
+npm --prefix frontend install
+npm --prefix frontend run build
+php lava serve
+```
+
+Open `http://127.0.0.1:3000/inventory` and sign in with an existing account from `users`. Product endpoints are under `/api/products`; login uses `/api/auth/login`, and CRUD endpoints require the session established by that login.
+
+For Render, create a Docker Web Service from this repository and add `APP_KEY`, `APP_ENV=production`, `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`, and `DB_NAME` as environment variables. Add Aiven's CA certificate as a Render Secret File and set `DB_SSL_CA` to its mounted path. Run the migration once from an authorized CLI environment before using the service; do not expose browser migration routes in production.
+
 ## Contributing
 
 Contributions are welcome. To contribute:

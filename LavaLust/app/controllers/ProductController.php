@@ -14,6 +14,11 @@ class ProductController extends Controller
         $this->call->model('ProductModel');
     }
 
+    public function app()
+    {
+        $this->call->view('product/react');
+    }
+
     public function read()
     {
         $data['products'] = $this->ProductModel->read();

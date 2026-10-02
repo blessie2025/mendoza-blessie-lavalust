@@ -9,6 +9,8 @@
 vendor/
 app/vendor/
 composer.lock
+**/node_modules/
+**/public/build/
 
 # Cache & Logs
 runtime/*

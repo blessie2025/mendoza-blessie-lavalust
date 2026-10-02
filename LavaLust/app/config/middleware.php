@@ -42,7 +42,11 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 require_once APP_DIR . 'middlewares/AuthMiddleware.php';
+require_once APP_DIR . 'middlewares/ApiAuthMiddleware.php';
+require_once APP_DIR . 'middlewares/MigrationMiddleware.php';
 
 $config['middlewares'] = [
-	'AuthMiddleware' => new AuthMiddleware()
+	'AuthMiddleware' => new AuthMiddleware(),
+	'ApiAuthMiddleware' => new ApiAuthMiddleware(),
+	'MigrationMiddleware' => new MigrationMiddleware(),
 ];

@@ -64,7 +64,8 @@ $database['main'] = array(
     'username'  => getenv('DB_USERNAME') ?: '',
     'password'  => getenv('DB_PASSWORD') ?: '',
     'database'  => getenv('DB_NAME') ?: getenv('DB_DATABASE') ?: '',
-    'charset'   => 'utf8mb4'
+    'charset'   => 'utf8mb4',
+    'ssl_ca'    => getenv('DB_SSL_CA') ?: '',
 );
 
 ?>
