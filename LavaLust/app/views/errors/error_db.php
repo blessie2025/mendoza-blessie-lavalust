@@ -50,7 +50,7 @@ function get_code_excerpt($file, $errorLine, $padding = 10) {
 $ex      = isset($exception) && $exception instanceof Throwable ? $exception : null;
 $filePath = $ex ? $ex->getFile() : 'Unknown';
 $lineNum  = $ex ? $ex->getLine() : 0;
-$errMsg   = $ex ? $ex->getMessage() : ($exception_message ?? $message ?? 'Unknown database error');
+$errMsg   = $exception_message ?? $message ?? ($ex ? $ex->getMessage() : 'Unknown database error');
 
 list($codeExcerpt) = get_code_excerpt($filePath, $lineNum);
 
