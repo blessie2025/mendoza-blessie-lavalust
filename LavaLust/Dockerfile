@@ -1,3 +1,5 @@
+ARG PHP_VERSION=8.5
+
 FROM node:22-alpine AS frontend-build
 WORKDIR /workspace/frontend
 COPY frontend/package*.json ./
@@ -5,7 +7,6 @@ RUN npm ci
 COPY frontend/ ./
 RUN npm run build
 
-ARG PHP_VERSION=8.5
 FROM php:${PHP_VERSION}-apache
  
 # Install PDO MySQL
