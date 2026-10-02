@@ -276,6 +276,26 @@ class Database {
             $this->db = new PDO($dsn, $username, $password, $options);
             $this->driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         } catch (Exception $e) {
+            if ($driver === 'mysql') {
+                $ssl_ca = $database_config['ssl_ca'] ?? '';
+                $ssl_ca_status = 'not configured';
+
+                if ($ssl_ca !== '') {
+                    if (!is_file($ssl_ca)) {
+                        $ssl_ca_status = 'file missing';
+                    } elseif (!is_readable($ssl_ca)) {
+                        $ssl_ca_status = 'file unreadable';
+                    } else {
+                        $ssl_ca_contents = file_get_contents($ssl_ca);
+                        $ssl_ca_status = $ssl_ca_contents !== false && @openssl_x509_read($ssl_ca_contents)
+                            ? 'readable valid PEM'
+                            : 'readable invalid PEM';
+                    }
+                }
+
+                error_log('MySQL SSL CA diagnostic: ' . $ssl_ca_status);
+            }
+
             $error = load_class('Errors', 'kernel');
             $error->show_database_error(
                 $e->getMessage(),
