@@ -67,6 +67,14 @@ $config['payload_token_expiration'] = 900;
 */
 $config['refresh_token_expiration'] = 604800;
 
+$application_key = getenv('APP_KEY') ?: '';
+$derived_jwt_secret = strlen($application_key) >= 32
+	? hash_hmac('sha256', 'lavalust-jwt-secret', $application_key)
+	: '';
+$derived_refresh_token_key = strlen($application_key) >= 32
+	? hash_hmac('sha256', 'lavalust-refresh-token-key', $application_key)
+	: '';
+
 /*
 |--------------------------------------------------------------------------
 | JWT Secret Token
@@ -75,7 +83,7 @@ $config['refresh_token_expiration'] = 604800;
 | Used for Securing endpoint
 |
 */
-$config['jwt_secret'] = 'cbTsnJDxCodakDxh4M3qd5Sn3Kd2cYCDp4MEu0DAPxx';
+$config['jwt_secret'] = getenv('JWT_SECRET') ?: $derived_jwt_secret;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,7 +93,7 @@ $config['jwt_secret'] = 'cbTsnJDxCodakDxh4M3qd5Sn3Kd2cYCDp4MEu0DAPxx';
 | Used for Securing endpoint
 |
 */
-$config['refresh_token_key'] = '0bNvxjPFJ6dhi1Ttf7AStp95zUcd1iy94mjblklwfPs';
+$config['refresh_token_key'] = getenv('REFRESH_TOKEN_KEY') ?: $derived_refresh_token_key;
 
 /*
 |--------------------------------------------------------------------------
